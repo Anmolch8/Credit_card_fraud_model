@@ -3,7 +3,7 @@ from flask import Flask,request,jsonify
 import joblib
 
 app=Flask(__name__)
-model=joblib.load('ML_PIPELINE/model/fraud-detector.pkl')
+model=joblib.load('L_PIPELINE/model/fraud-detector.pkl')
 @app.route('/')
 def test():
     return 'heyeye'
