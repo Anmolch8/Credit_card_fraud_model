@@ -14,10 +14,8 @@ def predict():
     repeat_retailer=int(request.args["retailer"])
     used_card=int(request.args["card"])
     used_pin=int(request.args["pin"])
-    online_order=int(request.args["order"])
+    online_order=int(request.argsml ["order"])
     perdiction=model.predict([[distance_from_home,distance_from_last_transaction,repeat_retailer,
     used_card,used_pin,online_order]])
     out=perdiction[0]
-    return {'prediction':int(out)}
-if __name__ == '__main__':
-    app.run(debug=True)    
+    return {'prediction':int(out)}  
