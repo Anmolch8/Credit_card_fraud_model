@@ -1,9 +1,12 @@
 import numpy as np
 from flask import Flask,request,jsonify
-import joblib
+import pickle
+import bz2
 
 app=Flask(__name__)
-model=joblib.load('ML_PIPELINE/model/fraud-detector.pkl')
+ifile = bz2.BZ2File("ML_PIPELINE/model/fraud-detector.pkl",'rb')
+data=pickle.load(ifile)
+ifile.close()
 @app.route('/')
 def test():
     return 'heyeye'
@@ -15,7 +18,7 @@ def predict():
     used_card=int(request.args["card"])
     used_pin=int(request.args["pin"])
     online_order=int(request.argsml ["order"])
-    perdiction=model.predict([[distance_from_home,distance_from_last_transaction,repeat_retailer,
+    perdiction=data.predict([[distance_from_home,distance_from_last_transaction,repeat_retailer,
     used_card,used_pin,online_order]])
     out=perdiction[0]
     return {'prediction':int(out)}  
