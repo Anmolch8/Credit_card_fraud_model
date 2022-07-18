@@ -1,9 +1,7 @@
 import numpy as np
 from flask import Flask,request,jsonify
 import joblib
-model=None
 app=Flask(__name__)
-global model
 model = joblib.load('../model/fraud-detector.pkl')
 @app.route('/')
 def test():
@@ -16,7 +14,7 @@ def predict():
     used_card=int(request.args["card"])
     used_pin=int(request.args["pin"])
     online_order=int(request.argsml ["order"])
-    perdiction=data.predict([[distance_from_home,distance_from_last_transaction,repeat_retailer,
+    perdiction=model.predict([[distance_from_home,distance_from_last_transaction,repeat_retailer,
     used_card,used_pin,online_order]])
     out=perdiction[0]
     return {'prediction':int(out)}  
