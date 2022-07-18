@@ -6,7 +6,7 @@ model = None
 def load_model() -> None:
     global model
 
-    model = joblib.load('../model/fraud-detector.pkl')
+    model = joblib.load('ML_PIPELINE/model/fraud-detector.pkl')
 
 
 if __name__ == '__main__':

@@ -1,12 +1,10 @@
 import numpy as np
 from flask import Flask,request,jsonify
-import pickle
-import bz2
-
+import joblib
+model=None
 app=Flask(__name__)
-ifile = bz2.BZ2File("ML_PIPELINE/model/fraud-detector.pkl",'rb')
-data=pickle.load(ifile)
-ifile.close()
+global model
+model = joblib.load('../model/fraud-detector.pkl')
 @app.route('/')
 def test():
     return 'heyeye'
